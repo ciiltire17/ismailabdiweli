@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Ismail Abdiweli Ahmed, a Computer Science student from Somalia specializing in full-stack development, AI/NLP research, creative design, and youth leadership."
+    />
+    <meta
+      name="keywords"
+      content="Ismail Abdiweli Ahmed, Somalia developer, full-stack developer, AI researcher, NLP, React developer, Spring Boot, creative designer, youth leader"
+    />
+    <meta property="og:title" content="Ismail Abdiweli Ahmed | Full-Stack Developer & AI/NLP Researcher" />
+    <meta property="og:description" content="A premium portfolio for a full-stack developer, AI/NLP researcher, creative designer, youth leader, and international learner." />
+    <meta property="og:type" content="website" />
+    <title>Ismail Abdiweli Ahmed | Full-Stack Developer & AI/NLP Researcher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui"],
+              display: ["Space Grotesk", "Inter", "ui-sans-serif"],
+              mono: ["JetBrains Mono", "ui-monospace"],
+            },
+            colors: {
+              ink: "#050505",
+              graphite: "#111114",
+              smoke: "#18181B",
+              line: "rgba(255,255,255,0.1)",
+              blue: "#60A5FA",
+              gold: "#D6B76C",
+            },
+            boxShadow: {
+              glow: "0 0 70px rgba(96, 165, 250, 0.18)",
+              gold: "0 0 60px rgba(214, 183, 108, 0.16)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, system-ui, sans-serif;
+      }
+
+      .noise {
+        background-image:
+          radial-gradient(circle at 20% 10%, rgba(96, 165, 250, 0.14), transparent 26rem),
+          radial-gradient(circle at 80% 0%, rgba(214, 183, 108, 0.1), transparent 24rem),
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        background-size: auto, auto, 72px 72px, 72px 72px;
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+      }
+
+      .light .glass {
+        background: rgba(255, 255, 255, 0.72);
+        border-color: rgba(15, 23, 42, 0.08);
+      }
+
+      .gradient-text {
+        background: linear-gradient(110deg, #ffffff, #c8ddff 45%, #d6b76c);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .light .gradient-text {
+        background: linear-gradient(110deg, #0f172a, #2563eb 55%, #9a6a18);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const { useEffect, useMemo, useState } = React;
+      const fallbackMotion = new Proxy({}, {
+        get: (_, tag) => React.forwardRef(({ initial, animate, whileInView, viewport, variants, transition, ...props }, ref) =>
+          React.createElement(tag, { ...props, ref })
+        ),
+      });
+      const motion = fallbackMotion;
+
+      const assets = {
+        profileMain: "assets/images/ismail-profile-main.jpg",
+        profileAbout: "assets/images/ismail-profile-about.jpg",
+      };
+
+      const socials = [
+        { label: "GitHub", href: "https://github.com/", short: "GH" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/ismail-a-81b6bb256", short: "IN" },
+        { label: "Instagram", href: "https://www.instagram.com/muhsin_ciiltire_", short: "IG" },
+        { label: "Email", href: "mailto:ismail@example.com", short: "EM" },
+      ];
+
+      const identities = ["Software Developer", "AI/NLP Researcher", "Creative Designer", "Youth Leader", "International Learner"];
+
+      const skills = [
+        { title: "Frontend", items: ["React", "JavaScript", "Tailwind CSS", "UI/UX", "Responsive Design"] },
+        { title: "Backend", items: ["Node.js", "Spring Boot", "REST APIs", "Authentication", "Server Architecture"] },
+        { title: "Databases", items: ["MongoDB", "PostgreSQL", "SQL", "Data Modeling"] },
+        { title: "AI & Research", items: ["NLP", "Machine Learning", "Cyberbullying Detection", "Model Evaluation"] },
+        { title: "Creative", items: ["Branding", "Graphic Design", "Photoshop", "Motion Graphics", "Video Editing"] },
+        { title: "Tools", items: ["GitHub", "Figma", "VS Code", "Postman", "WordPress"] },
+      ];
+
+      const projects = [
+        {
+          title: "Cyberbullying Detection System",
+          category: "AI / NLP Research",
+          description: "A language-focused machine learning system designed to detect harmful online text and support safer digital communities.",
+          tech: ["Python", "NLP", "Machine Learning", "Text Classification", "Research"],
+          featured: true,
+        },
+        {
+          title: "SAWONET Website",
+          category: "Web Platform",
+          description: "A professional web presence focused on clear communication, responsive design, and organizational credibility.",
+          tech: ["React", "Tailwind CSS", "JavaScript"],
+        },
+        {
+          title: "FitTrack Project",
+          category: "Full-Stack App",
+          description: "A fitness tracking product for activity monitoring, wellness goals, and user progress insights.",
+          tech: ["React", "Node.js", "MongoDB", "REST API"],
+        },
+        {
+          title: "Course Registration System",
+          category: "Academic System",
+          description: "A student-centered system for course selection, registration workflows, and academic data management.",
+          tech: ["Java", "Spring Boot", "PostgreSQL"],
+        },
+        {
+          title: "CO2 ML Forecasting Project",
+          category: "Machine Learning",
+          description: "A forecasting project using data-driven modeling to understand and predict CO2 patterns.",
+          tech: ["Python", "ML", "Data Analysis", "Forecasting"],
+        },
+        {
+          title: "Branding and Media Projects",
+          category: "Creative Direction",
+          description: "A collection of identity, poster, social media, motion, and visual communication projects.",
+          tech: ["Photoshop", "Figma", "Branding", "Motion"],
+        },
+      ];
+
+      const certificates = [
+        {
+          title: "INTI Student Mobility Program",
+          issuer: "INTI International University, Malaysia",
+          detail: "International exchange and academic mobility experience.",
+          href: "assets/certificates/inti-student-mobility-program-2024.pdf",
+          type: "PDF",
+        },
+        {
+          title: "YPS Training Programme",
+          issuer: "YECO Somalia and Nabaad",
+          detail: "Youth, Peace and Security training programme.",
+          href: "assets/certificates/yps-training-program-2025.jpg",
+          type: "JPG",
+        },
+        {
+          title: "Academic Performance Award",
+          issuer: "Academic Recognition",
+          detail: "Award recognizing strong academic performance.",
+          href: "assets/certificates/academic-performance-award.pdf",
+          type: "PDF",
+        },
+        {
+          title: "Creative Training Program",
+          issuer: "Digital Shelter and Civil Rights Defenders",
+          detail: "Photography, videography, and blog writing training.",
+          href: "assets/certificates/creative-training-photography-videography-blog-writing-2025.jpg",
+          type: "JPG",
+        },
+        {
+          title: "Blog Writing Training",
+          issuer: "SPA Learning Lab",
+          detail: "One-month blog writing training course.",
+          href: "assets/certificates/blog-writing-spa-learning-lab-2025.jpg",
+          type: "JPG",
+        },
+        {
+          title: "WordPress Certificate",
+          issuer: "Jamhuuriya",
+          detail: "WordPress training and web publishing skills.",
+          href: "assets/certificates/wordpress-jamhuuriya.pdf",
+          type: "PDF",
+        },
+        {
+          title: "SOMX Personal Branding",
+          issuer: "SOMX",
+          detail: "Personal branding and professional identity development.",
+          href: "assets/certificates/somx-personal-branding.pdf",
+          type: "PDF",
+        },
+        {
+          title: "High School Certificate",
+          issuer: "Secondary Education",
+          detail: "Academic foundation and education milestone.",
+          href: "assets/certificates/high-school-certificate.pdf",
+          type: "PDF",
+        },
+      ];
+
+      const timeline = [
+        ["Computer Science Journey", "Built foundations in software engineering, databases, algorithms, and problem solving."],
+        ["Full-Stack Development", "Created web applications using React, JavaScript, Spring Boot, Node.js, MongoDB, and PostgreSQL."],
+        ["AI/NLP Research", "Explored cyberbullying detection and machine learning systems for real-world social impact."],
+        ["INTI University Malaysia", "Joined an international exchange experience and expanded academic and cultural perspective."],
+        ["Youth Leadership", "Participated in leadership programs, community initiatives, workshops, and hackathons."],
+        ["Creative Media", "Developed branding, posters, social content, motion graphics, and design-led communication."],
+      ];
+
+      const gallery = [
+        ["Brand Identity", "Visual systems and personal branding", "from-blue-500/30 to-white/5", "col-span-12 md:col-span-5"],
+        ["Poster Design", "Campaign posters and event visuals", "from-gold/30 to-white/5", "col-span-12 md:col-span-4"],
+        ["Motion Graphics", "Short-form video and motion assets", "from-cyan-400/25 to-white/5", "col-span-12 md:col-span-3"],
+        ["Social Media", "Content design for community stories", "from-violet-400/20 to-white/5", "col-span-12 md:col-span-4"],
+        ["Photography / Video", "Editorial frames and visual storytelling", "from-emerald-400/20 to-white/5", "col-span-12 md:col-span-4"],
+        ["UI Concepts", "Interfaces and product visuals", "from-slate-300/20 to-white/5", "col-span-12 md:col-span-4"],
+      ];
+
+      const fadeUp = {
+        hidden: { opacity: 0, y: 26 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+      };
+
+      function useTyping(words) {
+        const [index, setIndex] = useState(0);
+        const [subIndex, setSubIndex] = useState(0);
+        const [deleting, setDeleting] = useState(false);
+
+        useEffect(() => {
+          const word = words[index];
+          const delay = deleting ? 36 : 72;
+          const pause = subIndex === word.length && !deleting ? 1200 : delay;
+          const timer = setTimeout(() => {
+            if (!deleting && subIndex < word.length) setSubIndex(subIndex + 1);
+            else if (!deleting && subIndex === word.length) setDeleting(true);
+            else if (deleting && subIndex > 0) setSubIndex(subIndex - 1);
+            else {
+              setDeleting(false);
+              setIndex((index + 1) % words.length);
+            }
+          }, pause);
+          return () => clearTimeout(timer);
+        }, [words, index, subIndex, deleting]);
+
+        return words[index].slice(0, subIndex);
+      }
+
+      function App() {
+        return (
+          <div className="dark">
+            <div className="min-h-screen overflow-hidden bg-ink text-white">
+              <main className="noise relative">
+                <Navbar />
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Certifications />
+                <Leadership />
+                <Gallery />
+                <Contact />
+                <Footer />
+              </main>
+            </div>
+          </div>
+        );
+      }
+
+      function Navbar() {
+        return (
+          <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-black/45 backdrop-blur-2xl">
+            <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+              <a href="#home" className="font-display text-lg font-bold tracking-tight">Ismail A.</a>
+              <div className="hidden items-center gap-7 text-sm text-zinc-300 md:flex">
+                {[
+                  ["About", "#about"],
+                  ["Skills", "#skills"],
+                  ["Projects", "#projects"],
+                  ["Certificates", "#certifications"],
+                  ["Leadership", "#leadership"],
+                  ["Creative", "#gallery"],
+                  ["Contact", "#contact"],
+                ].map(([item, href]) => (
+                  <a key={item} href={href} className="transition hover:text-blue">{item}</a>
+                ))}
+              </div>
+              <a href="#contact" className="rounded-full border border-white/10 px-4 py-2 text-sm font-semibold transition hover:border-blue/60 hover:text-blue">Contact</a>
+            </nav>
+          </header>
+        );
+      }
+
+      function Section({ id, eyebrow, title, children }) {
+        return (
+          <section id={id} className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+            <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }} className="mb-10 max-w-3xl">
+              <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-blue">{eyebrow}</p>
+              <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">{title}</h2>
+            </motion.div>
+            {children}
+          </section>
+        );
+      }
+
+      function Hero() {
+        return (
+          <section id="home" className="mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-5 pb-20 pt-32 lg:grid-cols-[1.04fr_0.96fr] lg:px-8">
+            <motion.div variants={fadeUp} initial="hidden" animate="show">
+              <div className="mb-7 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">
+                Computer Science Student from Somalia
+              </div>
+              <h1 className="font-display text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl lg:text-8xl">
+                Ismail Abdiweli Ahmed
+              </h1>
+              <p className="mt-6 max-w-2xl text-xl leading-8 text-zinc-300">
+                Full-stack developer, AI/NLP researcher, creative designer, and youth leader building intelligent,
+                human-centered digital products with global ambition and local purpose.
+              </p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a href="#projects" className="rounded-full bg-white px-6 py-3 text-center text-sm font-bold text-black transition hover:bg-blue hover:text-white">
+                  View Projects
+                </a>
+                <a href="#contact" className="rounded-full border border-white/15 px-6 py-3 text-center text-sm font-bold transition hover:border-blue hover:text-blue">
+                  Contact Me
+                </a>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {socials.map((item) => (
+                  <a key={item.label} href={item.href} className="grid h-11 w-11 place-items-center rounded-full border border-black/10 text-xs font-bold transition hover:border-blue hover:text-blue dark:border-white/10" aria-label={item.label}>
+                    {item.short}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.15 }} className="relative">
+              <div className="absolute inset-8 rounded-full bg-blue/20 blur-3xl" />
+              <div className="glass relative overflow-hidden rounded-[2rem] p-4">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.4rem] bg-zinc-950 text-white">
+                  <img
+                    src={assets.profileMain}
+                    alt="Portrait of Ismail Abdiweli Ahmed"
+                    className="h-full w-full object-cover object-[50%_32%] opacity-90 saturate-[0.92]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" />
+                  <div className="absolute left-5 right-5 top-5 flex justify-between">
+                    <span className="rounded-full border border-white/15 bg-black/35 px-4 py-2 font-mono text-xs uppercase tracking-[0.24em] text-blue backdrop-blur">Portfolio</span>
+                    <span className="rounded-full border border-white/15 bg-black/35 px-4 py-2 text-sm text-zinc-200 backdrop-blur">2026</span>
+                  </div>
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <p className="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-blue">Somalia to global tech</p>
+                    <h2 className="font-display text-3xl font-bold leading-tight md:text-4xl">Engineering intelligence with creative discipline.</h2>
+                    <div className="mt-5 grid grid-cols-2 gap-3">
+                      {["React", "NLP", "Leadership", "Branding"].map((tag) => (
+                        <span key={tag} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-center text-sm backdrop-blur">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </section>
+        );
+      }
+
+      function IdentityStrip() {
+        return (
+          <div className="border-y border-black/5 bg-white/35 py-5 backdrop-blur dark:border-white/10 dark:bg-white/[0.03]">
+            <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-3 px-5 lg:px-8">
+              {identities.map((item) => (
+                <span key={item} className="rounded-full border border-black/10 px-4 py-2 text-sm text-zinc-700 dark:border-white/10 dark:text-zinc-300">{item}</span>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      function About() {
+        return (
+          <Section id="about" eyebrow="About" title="A builder with research depth and creative range.">
+            <div className="grid items-stretch gap-6 lg:grid-cols-[0.82fr_1.18fr]">
+              <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="glass relative min-h-[34rem] overflow-hidden rounded-3xl">
+                <img
+                  src={assets.profileAbout}
+                  alt="Full-body portrait of Ismail Abdiweli Ahmed"
+                  className="h-full w-full object-cover object-[50%_36%] saturate-[0.9]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/10 bg-black/35 p-5 text-white backdrop-blur">
+                  <p className="font-mono text-xs uppercase tracking-[0.24em] text-blue">International learner</p>
+                  <p className="mt-2 text-sm leading-6 text-zinc-200">A calm, globally minded visual identity built around technical credibility and human presence.</p>
+                </div>
+              </motion.div>
+              <div>
+                <motion.p variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+                  I am a Computer Science student from Somalia, developing a practice that connects full-stack engineering,
+                  AI/NLP research, creative design, and youth leadership. My work spans web platforms, machine learning
+                  projects, branding systems, media production, and community programs, shaped by international exposure
+                  through INTI University Malaysia and collaborative learning experiences.
+                </motion.p>
+                <div className="mt-6 grid gap-4 md:grid-cols-3">
+                  {[
+                    ["Engineering", "Building scalable web systems with React, Node.js, Spring Boot, MongoDB, and PostgreSQL."],
+                    ["Research", "Exploring NLP, machine learning, and cyberbullying detection for safer online communities."],
+                    ["Creative Leadership", "Designing brands, media visuals, and youth-centered initiatives with a community-first mindset."],
+                  ].map(([title, text]) => (
+                    <motion.div key={title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="glass rounded-2xl p-6">
+                      <h3 className="font-display text-xl font-bold">{title}</h3>
+                      <p className="mt-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300">{text}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Section>
+        );
+      }
+
+      function Skills() {
+        return (
+          <Section id="skills" eyebrow="Capabilities" title="Technical, research, and creative skills organized for real work.">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {skills.map((group, index) => (
+                <motion.article
+                  key={group.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="glass rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-glow"
+                >
+                  <div className="mb-5 flex items-center justify-between">
+                    <h3 className="font-display text-xl font-bold">{group.title}</h3>
+                    <span className="grid h-10 w-10 place-items-center rounded-full bg-blue/10 font-mono text-xs text-blue">{String(index + 1).padStart(2, "0")}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {group.items.map((skill) => <span key={skill} className="rounded-full border border-black/10 px-3 py-1.5 text-sm text-zinc-600 dark:border-white/10 dark:text-zinc-300">{skill}</span>)}
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </Section>
+        );
+      }
+
+      function Projects() {
+        return (
+          <Section id="projects" eyebrow="Selected Work" title="Projects that show software strength, research thinking, and visual craft.">
+            <div className="grid gap-5 lg:grid-cols-2">
+              {projects.map((project, index) => (
+                <motion.article
+                  key={project.title}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.04 }}
+                  className={`glass group overflow-hidden rounded-3xl ${project.featured ? "lg:col-span-2" : ""}`}
+                >
+                  <div className={`grid gap-0 ${project.featured ? "lg:grid-cols-[1.1fr_0.9fr]" : ""}`}>
+                    <div className="p-7 md:p-9">
+                      <p className="font-mono text-xs uppercase tracking-[0.24em] text-blue">{project.category}</p>
+                      <h3 className="mt-4 font-display text-2xl font-bold md:text-4xl">{project.title}</h3>
+                      <p className="mt-4 max-w-2xl leading-7 text-zinc-600 dark:text-zinc-300">{project.description}</p>
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {project.tech.map((tech) => <span key={tech} className="rounded-full bg-black/5 px-3 py-1.5 text-xs font-semibold text-zinc-700 dark:bg-white/10 dark:text-zinc-200">{tech}</span>)}
+                      </div>
+                      <div className="mt-7 flex gap-3">
+                        <a href="#" className="rounded-full border border-black/10 px-5 py-2.5 text-sm font-bold transition hover:border-blue hover:text-blue dark:border-white/10">GitHub</a>
+                        <a href="#" className="rounded-full bg-blue px-5 py-2.5 text-sm font-bold text-white transition hover:bg-white hover:text-black">Live Demo</a>
+                      </div>
+                    </div>
+                    <ProjectMockup project={project} index={index} />
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </Section>
+        );
+      }
+
+      function ProjectMockup({ project, index }) {
+        return (
+          <div className="min-h-72 border-t border-black/5 bg-zinc-950 p-5 dark:border-white/10 lg:border-l lg:border-t-0">
+            <div className="h-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 via-white/[0.04] to-blue/10 p-4">
+              <div className="mb-4 flex gap-2">
+                <span className="h-3 w-3 rounded-full bg-red-400/80" />
+                <span className="h-3 w-3 rounded-full bg-gold/80" />
+                <span className="h-3 w-3 rounded-full bg-blue/80" />
+              </div>
+              <div className="grid h-[calc(100%-28px)] gap-3">
+                <div className="rounded-xl bg-white/10 p-4">
+                  <div className="h-3 w-28 rounded-full bg-white/30" />
+                  <div className="mt-5 grid grid-cols-3 gap-3">
+                    <div className="col-span-2 h-24 rounded-xl bg-blue/20" />
+                    <div className="h-24 rounded-xl bg-gold/20" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {[0, 1, 2].map((item) => <div key={item} className="h-20 rounded-xl bg-white/[0.08]" />)}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      function Timeline() {
+        return (
+          <Section id="journey" eyebrow="Journey" title="A timeline shaped by learning, building, and leading.">
+            <div className="relative border-l border-black/10 pl-6 dark:border-white/10 md:pl-10">
+              {timeline.map(([title, text], index) => (
+                <motion.div key={title} initial={{ opacity: 0, x: -18 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative mb-9 last:mb-0">
+                  <span className="absolute -left-[31px] top-1 grid h-4 w-4 place-items-center rounded-full bg-blue shadow-glow md:-left-[47px]" />
+                  <p className="font-mono text-xs text-blue">{String(index + 1).padStart(2, "0")}</p>
+                  <h3 className="mt-2 font-display text-2xl font-bold">{title}</h3>
+                  <p className="mt-2 max-w-2xl leading-7 text-zinc-600 dark:text-zinc-300">{text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </Section>
+        );
+      }
+
+      function Certifications() {
+        return (
+          <Section id="certifications" eyebrow="Certifications" title="Academic, leadership, creative, and professional certificates.">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {certificates.map((certificate) => (
+                <a key={certificate.title} href={certificate.href} className="glass group rounded-2xl p-5 transition hover:-translate-y-1 hover:border-blue/50" target="_blank" rel="noreferrer">
+                  <div className="mb-5 flex h-24 items-end justify-between rounded-xl border border-gold/20 bg-gradient-to-br from-gold/20 to-white/5 p-4">
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-gold">Certificate</span>
+                    <span className="rounded-full bg-white/10 px-2 py-1 text-xs text-zinc-300">{certificate.type}</span>
+                  </div>
+                  <h3 className="font-display text-lg font-bold">{certificate.title}</h3>
+                  <p className="mt-2 text-sm text-zinc-400">{certificate.issuer}</p>
+                  <p className="mt-3 text-sm leading-6 text-zinc-300">{certificate.detail}</p>
+                </a>
+              ))}
+            </div>
+          </Section>
+        );
+      }
+
+      function Leadership() {
+        const items = [
+          ["Workshops", "Participated in learning-focused workshops, technical sessions, and hands-on training programs."],
+          ["Volunteer Experience", "Supported community initiatives through digital, creative, and organizational contributions."],
+          ["Youth Leadership", "Engaged in youth development programs focused on collaboration, growth, and social contribution."],
+          ["International Collaboration", "Expanded cross-cultural perspective through exchange programs, hackathons, and academic networks."],
+        ];
+        return (
+          <Section id="leadership" eyebrow="Community" title="Leadership experience with a global and community-minded lens.">
+            <div className="grid gap-5 md:grid-cols-2">
+              {items.map(([title, text]) => (
+                <motion.div key={title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="glass rounded-2xl p-7">
+                  <h3 className="font-display text-2xl font-bold">{title}</h3>
+                  <p className="mt-3 leading-7 text-zinc-600 dark:text-zinc-300">{text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </Section>
+        );
+      }
+
+      function Gallery() {
+        return (
+          <Section id="gallery" eyebrow="Creative Gallery" title="A curated view of branding, media, motion, and visual design.">
+            <div className="gallery-grid grid gap-4">
+              {gallery.map(([title, text, gradient, span]) => (
+                <motion.div key={title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className={`group min-h-64 overflow-hidden rounded-3xl border border-black/10 bg-gradient-to-br ${gradient} p-6 dark:border-white/10 ${span}`}>
+                  <div className="flex h-full flex-col justify-between">
+                    <span className="w-max rounded-full border border-black/10 px-3 py-1 text-xs font-bold dark:border-white/15">Creative Work</span>
+                    <div>
+                      <h3 className="font-display text-3xl font-bold">{title}</h3>
+                      <p className="mt-2 text-zinc-600 dark:text-zinc-300">{text}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </Section>
+        );
+      }
+
+      function Stats() {
+        const stats = [
+          ["5", "Professional identities"],
+          ["6", "Featured project areas"],
+          ["8", "Certificates & achievements"],
+          ["∞", "Learning mindset"],
+        ];
+        return (
+          <section className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+            <div className="glass grid gap-4 rounded-3xl p-5 sm:grid-cols-2 lg:grid-cols-4">
+              {stats.map(([value, label]) => (
+                <div key={label} className="rounded-2xl bg-black/5 p-6 text-center dark:bg-white/[0.04]">
+                  <div className="font-display text-4xl font-bold gradient-text">{value}</div>
+                  <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{label}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      }
+
+      function Testimonials() {
+        return (
+          <Section id="testimonials" eyebrow="Trust" title="Testimonials area prepared for mentors, collaborators, and clients.">
+            <div className="grid gap-5 md:grid-cols-2">
+              {[
+                "Ismail brings a rare mix of technical discipline, creativity, and leadership.",
+                "His work shows strong attention to both functionality and presentation.",
+              ].map((quote, index) => (
+                <div key={quote} className="glass rounded-2xl p-7">
+                  <p className="text-xl leading-8 text-zinc-700 dark:text-zinc-200">“{quote}”</p>
+                  <p className="mt-6 font-mono text-xs uppercase tracking-[0.24em] text-blue">Add real name / role</p>
+                </div>
+              ))}
+            </div>
+          </Section>
+        );
+      }
+
+      function Contact() {
+        return (
+          <Section id="contact" eyebrow="Contact" title="Let’s build something meaningful.">
+            <div className="glass grid gap-8 rounded-3xl p-7 md:grid-cols-[1fr_0.85fr] md:p-10">
+              <div>
+                <p className="max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+                  Whether it is a web platform, AI research project, creative brand system, or youth-led initiative,
+                  I am open to meaningful collaborations.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <a href="mailto:ismail@example.com" className="rounded-full bg-white px-6 py-3 text-center text-sm font-bold text-black transition hover:bg-blue hover:text-white">Send Email</a>
+                  <a href="https://www.linkedin.com/in/ismail-a-81b6bb256" className="rounded-full border border-black/10 px-6 py-3 text-center text-sm font-bold transition hover:border-blue hover:text-blue dark:border-white/10">Connect on LinkedIn</a>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {[
+                  ["Email", "ismail@example.com"],
+                  ["GitHub", "github.com/your-username"],
+                  ["LinkedIn", "linkedin.com/in/ismail-a-81b6bb256"],
+                  ["Instagram", "instagram.com/muhsin_ciiltire_"],
+                  ["Location", "Somalia"],
+                ].map(([label, value]) => (
+                  <div key={label} className="flex items-center justify-between gap-4 rounded-2xl border border-black/10 p-4 text-sm dark:border-white/10">
+                    <span className="font-semibold">{label}</span>
+                    <span className="text-right text-zinc-600 dark:text-zinc-300">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Section>
+        );
+      }
+
+      function Footer() {
+        return (
+          <footer className="border-t border-black/5 px-5 py-8 text-center text-sm text-zinc-500 dark:border-white/10 dark:text-zinc-400">
+            <p>© 2026 Ismail Abdiweli Ahmed. Built with React, Tailwind CSS, and Framer Motion.</p>
+          </footer>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
